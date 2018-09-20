@@ -31,8 +31,16 @@ public class Spawner : MonoBehaviour
 
     public void Respawn()
     {
+        if(respawn == true)
+        {
         spawning = true;
         currentTime = spawnDelay;
+        }
+        if(respawn == false)
+        {
+        spawning = false;
+        Destroy(this);
+        }
     }
 
     void Spawn()

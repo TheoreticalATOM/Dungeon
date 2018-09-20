@@ -2,26 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CharacterPanel : MonoBehaviour 
 {
-	[SerializeField] private Text health, level;
+	[SerializeField] private TextMeshProUGUI health, level;
 	[SerializeField] private Image healthFill, levelFill;
 	[SerializeField] private Player player;
 
+	bool menuIsActive { get; set; }
+	public RectTransform characterPanel;
+
 	//Stats
-	private List<Text> playerStatsTexts = new List<Text>();
-	[SerializeField] private Text playerStatPrefab;
+	private List<TextMeshProUGUI> playerStatsTexts = new List<TextMeshProUGUI>();
+	[SerializeField] private TextMeshProUGUI playerStatPrefab;
 	[SerializeField] private Transform playerStatPanel;
 
 	//Equipped Weapon Stuff
 	[SerializeField] private Sprite defaultWeaponSprite;
 	private PlayerWeaponController playerWeaponController;
-	[SerializeField] private Text weaponStatPrefab;
+	[SerializeField] private TextMeshProUGUI weaponStatPrefab;
 	[SerializeField] private Transform weaponStatPanel;
-	[SerializeField] private Text weaponNameText;
+	[SerializeField] private TextMeshProUGUI weaponNameText;
 	[SerializeField] private Image weaponIcon;
-	private List<Text> weaponStatTexts = new List<Text>();
+	private List<TextMeshProUGUI> weaponStatTexts = new List<TextMeshProUGUI>();
 
 
 
@@ -33,6 +37,18 @@ public class CharacterPanel : MonoBehaviour
 		UIEventHandler.OnItemEquipped += UpdateEquipWeapon;
 		UIEventHandler.OnLevelUP += UpdateLevel;
 		InitalizeStats();
+		UpdateHealth(100, 100);
+		UpdateLevel();
+		characterPanel.gameObject.SetActive(false);
+	}
+
+	void Update()
+	{
+		if(Input.GetKeyDown(KeyCode.U))
+		{
+			menuIsActive = !menuIsActive;
+			characterPanel.gameObject.SetActive(menuIsActive);
+		}
 	}
 
 	void UpdateHealth(int currentHealth, int maxHealth)
@@ -86,7 +102,7 @@ public class CharacterPanel : MonoBehaviour
         weaponIcon.sprite = defaultWeaponSprite;
         for (int i = 0; i < weaponStatTexts.Count; i++)
         {
-           // Destroy(weaponStatTexts[i].gameObject);
+            //Destroy(weaponStatTexts[i].gameObject);
         }
         playerWeaponController.UnequipWeapon();
     }

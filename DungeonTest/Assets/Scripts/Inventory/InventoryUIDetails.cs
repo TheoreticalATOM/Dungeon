@@ -2,22 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class InventoryUIDetails : MonoBehaviour 
 {
 	Item item;
 	Button selectedItemButton, itemInteractButton;
-	Text itemNameText, itemDescriptionText, ItemInteractButtonText;
+	public TextMeshProUGUI itemNameText, itemDescriptionText, ItemInteractButtonText;
 
-	public Text statText;
+	public TextMeshProUGUI statText;
 
 
 	void Start()
 	{
-		itemNameText = transform.Find("Item_Name").GetComponent<Text>();
-		itemDescriptionText = transform.Find("Item_Description").GetComponent<Text>();
+		itemNameText = transform.Find("Item_Name").GetComponent<TextMeshProUGUI>();
+		itemDescriptionText = transform.Find("Item_Description").GetComponent<TextMeshProUGUI>();
 		itemInteractButton = transform.Find("InteractButton").GetComponent<Button>();
-		ItemInteractButtonText = itemInteractButton.transform.Find("Text").GetComponent<Text>();
+		ItemInteractButtonText = itemInteractButton.transform.GetComponentInChildren<TextMeshProUGUI>();
 		gameObject.SetActive(false);
 	}
 

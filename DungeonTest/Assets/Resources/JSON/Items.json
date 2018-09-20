@@ -2,14 +2,14 @@
   {
     "objectSlug": "sword",
     "itemName": "Sword",
-    "description": "A long, sharp blade.",
+    "description": "A Basic Sword",
     "itemType": "Weapon",
     "actionName": "Equip",
     "itemModifier": 0,
     "Stats": [
       {
         "StatType": "Power",
-        "BaseValue": 25,
+        "BaseValue": 5,
         "StatName": "Power"
       },
       {
